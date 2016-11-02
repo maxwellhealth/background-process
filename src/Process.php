@@ -71,7 +71,12 @@ class Process
 
         $command .= ' & echo $!';
 
-        $pid = (int) trim(shell_exec($command));
+        $scriptPath = '/tmp/' . uniqid() . '.sh';
+        file_put_contents($scriptPath, "$command");
+
+        $pid = (int) trim(shell_exec('bash ' . $scriptPath));
+
+        unlink($scriptPath);
 
         return $pid;
     }
