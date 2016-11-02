@@ -3,7 +3,7 @@
     "description": "A small PHP library to run background processes",
     "type": "library",
     "require-dev": {
-        "phpunit/phpunit": "^4.8.*"
+        "phpunit/phpunit": "4.8.*"
     },
     "license": "MIT",
     "autoload": {
