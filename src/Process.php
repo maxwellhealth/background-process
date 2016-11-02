@@ -71,7 +71,7 @@ class Process
 
         $command .= ' & echo $!';
 
-        $pid = (int) trim(shell_exec($command));
+        $pid = (int) trim(shell_exec('bash -c '. $command));
 
         return $pid;
     }
