@@ -87,6 +87,6 @@ class ProcessTest extends \PHPUnit_Framework_TestCase
 
             usleep(200000);
             $timeElapsed = microtime(true) - $timeStart;
-        } while ($timeElapsed <= 1);
+        } while ($timeElapsed <= 3);
     }
 }
