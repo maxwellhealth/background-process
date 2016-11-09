@@ -78,8 +78,6 @@ class Process
 
         unlink($scriptPath);
 
-        $pid = (int) trim(shell_exec('bash -c ' . $command));
-
         return $pid;
     }
 }
