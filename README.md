@@ -1,5 +1,8 @@
 # background-process
-A small PHP library to run background processes
+
+[![Build Status](https://travis-ci.org/maxwellhealth/background-process.svg?branch=master)](https://travis-ci.org/maxwellhealth/background-process)
+
+A small PHP library to run background processes.
 
 ### Basic Usage
 
