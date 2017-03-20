@@ -73,7 +73,12 @@ class Process
 
         $tmpFile = tmpfile();
 
+        // Get the temporary file's header/meta data from the file
+        // handle ($tmpFile) using stream_get_meta_data().
         $meta = stream_get_meta_data($tmpFile);
+
+        // Assign the URI/filename to a variable to be used when executing the
+        // background process.
         $tmpFilename = $meta['uri'];
 
         fwrite($tmpFile, "#!/bin/bash\n\n$command");
