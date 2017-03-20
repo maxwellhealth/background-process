@@ -71,12 +71,25 @@ class Process
 
         $command .= ' & echo $!';
 
-        $scriptPath = '/tmp/' . uniqid() . '.sh';
-        file_put_contents($scriptPath, "#!/bin/bash\n\n$command");
+        $tmpFile = tmpfile();
 
-        $pid = (int) trim(shell_exec('bash ' . $scriptPath));
+        // Get the temporary file's header/meta data from the file
+        // handle ($tmpFile) using stream_get_meta_data() which will return an
+        // array containing meta data like filename.
+        //
+        // We use this function because tmpfile() returns a file handle, not
+        // a filename string.
+        $meta = stream_get_meta_data($tmpFile);
 
-        unlink($scriptPath);
+        // Assign the URI/filename to a variable which will be used when
+        // executing the background process.
+        $tmpFilename = $meta['uri'];
+
+        fwrite($tmpFile, "#!/bin/bash\n\n$command");
+
+        $pid = (int) trim(shell_exec('bash ' . $tmpFilename));
+
+        fclose($tmpFile);
 
         return $pid;
     }
